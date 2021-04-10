@@ -26,9 +26,9 @@ jobs:
         run: |
           docker build \
             --tag $DOCKER_USERNAME/$REPOSITORY_NAME:$RELEASE_VERSION \
-            --tag $DOCKER_USERNAME/$REPOSITORY_NAME:latest
-          docker push \
-            $DOCKER_USERNAME/$REPOSITORY_NAME --all-tags
+            --tag $DOCKER_USERNAME/$REPOSITORY_NAME:latest .
+
+          docker push --all-tags $DOCKER_USERNAME/$REPOSITORY_NAME
         env:
           RELEASE_VERSION: ${{ env.RELEASE_VERSION }}
           REPOSITORY_NAME: ${{ github.event.repository.name }}
