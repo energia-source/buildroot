@@ -24,9 +24,10 @@ jobs:
 
       - name: Docker build and push to dockerhub
         run: |
-          docker build --output "type=image,push=true" \
+          docker build \
             --tag $DOCKER_USERNAME/$REPOSITORY_NAME:$RELEASE_VERSION \
-            --tag $DOCKER_USERNAME/$REPOSITORY_NAME:latest .
+            --tag $DOCKER_USERNAME/$REPOSITORY_NAME:latest . \
+          docker image push --all-tags
         env:
           RELEASE_VERSION: ${{ env.RELEASE_VERSION }}
           REPOSITORY_NAME: ${{ github.event.repository.name }}
